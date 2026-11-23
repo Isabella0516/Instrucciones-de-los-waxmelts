@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Luz Sensorial · Cómo usar tu pebetero y tus wax melts</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ===== 1. COLORES Y TIPOGRAFÍA ===== */
+:root{
+  --bg:#F7F3EA; --surface:#FCFAF5; --ink:#33302C; --muted:#756E64; --line:#E2D9C6;
+  --plum:#4B779B; --flame:#DC7A55; --rose:#D8C98F; --good:#A8995A; --bad:#D9705B;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light; box-sizing:border-box;
+}
+
+/* ===== 2. ESTILOS GENERALES ===== */
+html{scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.05rem/1.65 var(--sans)}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.15;margin:0 0 .5em;letter-spacing:-.01em}
+h1{font-size:clamp(2.5rem,8vw,4.3rem)}
+h2{font-size:clamp(1.9rem,5vw,2.6rem)}
+h3{font-size:1.4rem}
+p{margin:0 0 1em;max-width:62ch}
+a{color:var(--plum)}
+:focus-visible{outline:3px solid var(--flame);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 1.25rem}
+section{padding:3.5rem 0}
+
+/* ===== 3. LOGO Y ENCABEZADO ===== */
+.brand{text-align:center;padding-top:1.5rem}
+.brand img{width:150px;height:auto;mix-blend-mode:multiply}
+.hero{padding:1.5rem 0 3rem}
+.hero .wrap{display:grid;gap:2rem;align-items:center;grid-template-columns:1.1fr .9fr}
+.lead{font-size:1.2rem;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem}
+.chip{padding:.5rem 1rem;border:1px solid var(--line);border-radius:999px;background:var(--surface);text-decoration:none;color:var(--ink);font-weight:500;font-size:.95rem}
+.chip:hover{border-color:var(--flame)}
+
+/* Ilustración del pebetero (animación) */
+.burner{width:100%;max-width:340px;justify-self:center}
+.flame{transform-origin:50% 100%;animation:flicker 2.4s ease-in-out infinite}
+.glow{animation:glow 3.2s ease-in-out infinite}
+.steam{animation:rise 5s ease-in-out infinite;opacity:0}
+.s2{animation-delay:1.6s}
+.s3{animation-delay:3.2s}
+@keyframes flicker{0%,100%{transform:scale(1,1) rotate(-1deg)}30%{transform:scale(.94,1.07) rotate(1.5deg)}60%{transform:scale(1.04,.95) rotate(-1.5deg)}}
+@keyframes glow{0%,100%{opacity:.5}50%{opacity:.9}}
+@keyframes rise{0%{transform:translateY(10px);opacity:0}30%{opacity:.8}100%{transform:translateY(-40px);opacity:0}}
+@media (prefers-reduced-motion:reduce){.flame,.glow,.steam{animation:none}.steam{opacity:.4}}
+
+/* ===== 4. SECCIONES ===== */
+/* Cómo funciona */
+.how{background:var(--surface);border-block:1px solid var(--line)}
+.grid{display:grid;gap:1.25rem;grid-template-columns:repeat(3,1fr);margin-top:2rem}
+.cell{border-left:4px solid var(--flame);padding:.25rem 0 .25rem 1rem}
+.cell p{margin:0;color:var(--muted)}
+
+/* Instrucciones */
+.steps{list-style:none;margin:2rem 0 0;padding:0;counter-reset:s;display:grid;gap:1rem}
+.steps li{counter-increment:s;display:grid;grid-template-columns:3rem 1fr;gap:1rem;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:1.2rem 1.3rem}
+.steps li::before{content:counter(s);font:600 1.4rem/1 var(--serif);width:2.6rem;height:2.6rem;border-radius:50%;display:grid;place-items:center;background:var(--plum);color:var(--bg)}
+.steps h3{margin-bottom:.2em}
+.steps p{margin:0;color:var(--muted)}
+
+/* Dónde dejarlo y cuidados */
+.where{display:grid;gap:1.25rem;grid-template-columns:1fr 1fr;margin-top:2rem}
+.col{border-radius:22px;padding:1.5rem;border:1px solid var(--line);background:var(--surface)}
+.yes{border-top:6px solid var(--good)}
+.no{border-top:6px solid var(--bad)}
+.col ul,.tips ul{margin:0;padding-left:1.1rem}
+.col li,.tips li{margin-bottom:.5rem}
+.tips{margin-top:1.5rem;padding:1.5rem 1.6rem;border-radius:22px;background:var(--plum);color:var(--bg)}
+
+/* Contacto */
+.contact{background:var(--surface);border-top:1px solid var(--line);text-align:center}
+.contact p{margin-inline:auto}
+.wa{display:inline-block;margin-top:.5rem;padding:.9rem 1.6rem;border-radius:999px;background:var(--plum);color:var(--bg);text-decoration:none;font:600 1.15rem var(--serif)}
+.wa small{display:block;font:400 .85rem var(--sans);color:var(--bg);opacity:.85}
+
+/* Pie */
+footer{padding:2rem 0 3rem;text-align:center;color:var(--muted);font-size:.9rem}
+
+/* Celular */
+@media (max-width:760px){
+  .hero .wrap,.grid,.where{grid-template-columns:1fr}
+  section{padding:2.75rem 0}
+  .burner{max-width:260px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== LOGO ===== -->
+<div class="brand wrap">
+  <img src="data:image/jpeg;base64,TU_LOGO_EN_BASE64" alt="Luz Sensorial" width="150">
+</div>
+
+<!-- ===== ENCABEZADO: título, texto principal y botones ===== -->
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Tu pebetero, paso a paso</h1>
+      <p class="lead">Aprende a usar tu pebetero con wax melts: cómo se derrite la cera, dónde ponerlo en casa y cómo cuidarlo para que huela rico por mucho más tiempo.</p>
+      <nav class="chips" aria-label="Secciones">
+        <a class="chip" href="#funciona">Cómo funciona</a>
+        <a class="chip" href="#pasos">Instrucciones</a>
+        <a class="chip" href="#donde">Dónde dejarlo</a>
+        <a class="chip" href="#contacto">Contacto</a>
+      </nav>
+    </div>
+
+    <!-- Ilustración del pebetero -->
+    <svg class="burner" viewBox="0 0 300 360" role="img" aria-label="Ilustración de un pebetero con una vela encendida debajo y cera aromática derritiéndose arriba">
+      <ellipse class="glow" cx="150" cy="215" rx="120" ry="110" fill="var(--flame)" opacity=".2"/>
+      <path class="steam" d="M120 120c-14-16 14-26 0-44" stroke="var(--rose)" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <path class="steam s2" d="M150 115c-14-16 14-26 0-44" stroke="var(--rose)" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <path class="steam s3" d="M180 120c-14-16 14-26 0-44" stroke="var(--rose)" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <path d="M70 150c0-14 36-24 80-24s80 10 80 24c0 40-34 62-80 62s-80-22-80-62z" fill="var(--plum)"/>
+      <ellipse cx="150" cy="150" rx="68" ry="16" fill="var(--rose)"/>
+      <ellipse cx="150" cy="152" rx="46" ry="9" fill="var(--flame)"/>
+      <path d="M96 205h108l12 108c0 10-30 20-66 20s-66-10-66-20z" fill="var(--plum)"/>
+      <ellipse cx="150" cy="268" rx="26" ry="30" fill="var(--bg)"/>
+      <rect x="132" y="282" width="36" height="22" rx="4" fill="var(--rose)"/>
+      <g class="flame">
+        <path d="M150 238c14 12 18 24 12 34-4 7-20 7-24 0-6-10-2-22 12-34z" fill="var(--flame)"/>
+        <path d="M150 254c6 6 8 12 5 16-2 3-8 3-10 0-3-4-1-10 5-16z" fill="#FFE9A8"/>
+      </g>
+    </svg>
+  </div>
+</header>
+
+<!-- ===== TEXTO: CÓMO FUNCIONAN LOS WAX MELTS ===== -->
+<section id="funciona" class="how">
+  <div class="wrap">
+    <h2>Cómo funcionan los wax melts</h2>
+    <p>Son pastillas de cera perfumada que no se encienden: se derriten con calor suave y liberan su aroma sin humo ni mecha. La vela que va debajo calienta el plato, y el plato derrite la cera.</p>
+    <div class="grid">
+      <div class="cell"><h3>Calor suave</h3><p>Una vela pequeña tipo tealight calienta el plato superior. La cera pasa a estado líquido sin quemarse.</p></div>
+      <div class="cell"><h3>Aroma que se esparce</h3><p>Al derretirse, la fragancia sube al aire y llena la habitación en pocos minutos.</p></div>
+      <div class="cell"><h3>Dura varias horas</h3><p>Un cubito puede perfumar entre 4 y 8 horas, y la cera se puede reutilizar mientras todavía huela.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TEXTO: INSTRUCCIONES DE USO ===== -->
+<section id="pasos">
+  <div class="wrap">
+    <h2>Instrucciones de uso</h2>
+    <p>Sigue estos pasos la primera vez y en cada uso.</p>
+    <ol class="steps">
+      <li><div><h3>Prepara el pebetero</h3><p>Colócalo sobre una superficie plana, firme y seca. Verifica que el plato superior esté limpio y sin restos antiguos.</p></div></li>
+      <li><div><h3>Pon la cera en el plato</h3><p>Coloca uno o dos cubitos de wax melt. Si tu plato es pequeño, usa medio cubito: no necesitas más para un buen aroma.</p></div></li>
+      <li><div><h3>Enciende la vela</h3><p>Pon un tealight en el compartimento inferior y enciéndelo con un fósforo o encendedor largo. Nunca pongas la llama en contacto directo con la cera.</p></div></li>
+      <li><div><h3>Espera unos 15 minutos</h3><p>La cera se derrite poco a poco y el aroma empieza a sentirse. Evita las corrientes de aire para que la llama sea estable.</p></div></li>
+      <li><div><h3>Apaga y deja enfriar</h3><p>Apaga la vela con suavidad o con un apagavelas. Espera a que todo esté frío antes de tocarlo o limpiarlo.</p></div></li>
+      <li><div><h3>Cambia la cera cuando se agote el aroma</h3><p>Con la cera todavía tibia, retírala con un algodón o papel de cocina. Si ya está dura, déjala en el congelador unos minutos y sale en una pieza.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== TEXTO: DÓNDE DEJAR EL PEBETERO ===== -->
+<section id="donde" style="padding-top:1rem">
+  <div class="wrap">
+    <h2>Dónde dejar tu pebetero</h2>
+    <p>La ubicación cambia mucho cómo se siente el aroma y qué tan seguro es su uso.</p>
+    <div class="where">
+      <div class="col yes">
+        <h3>Lugares ideales</h3>
+        <ul>
+          <li>Sala o comedor, sobre una mesa lateral firme.</li>
+          <li>Baño, sobre un mueble lejos del agua.</li>
+          <li>Escritorio o repisa, a la altura de la vista.</li>
+          <li>Entrada de la casa, para recibir con aroma.</li>
+          <li>Siempre sobre una base resistente al calor, como un plato de cerámica.</li>
+        </ul>
+      </div>
+      <div class="col no">
+        <h3>Lugares que debes evitar</h3>
+        <ul>
+          <li>Cerca de cortinas, papeles o telas.</li>
+          <li>Al alcance de niños y mascotas.</li>
+          <li>Bajo estantes o muebles colgantes.</li>
+          <li>Frente a ventanas abiertas o ventiladores.</li>
+          <li>Sobre madera barnizada o plástico sin protección.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tips">
+      <h3>Cuidados importantes</h3>
+      <ul>
+        <li>No dejes la vela encendida cuando salgas de casa ni mientras duermes.</li>
+        <li>No muevas el pebetero con la cera líquida.</li>
+        <li>No mezcles fragancias muy fuertes en el mismo plato.</li>
+        <li>Usa solo tealights; velas más grandes pueden sobrecalentar el plato.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACTO -->
+<section id="contacto" class="contact">
+  <div class="wrap">
+    <h2>¿Tienes dudas o quieres hacer un pedido?</h2>
+    <p>Escríbenos por WhatsApp y te ayudamos a elegir tu pebetero y tus aromas favoritos.</p>
+    <a class="wa" href="https://wa.me/573223155227"><small>WhatsApp</small>+57 322 315 5227</a>
+  </div>
+</section>
+
+<!-- ===== PIE DE PÁGINA ===== -->
+<footer><div class="wrap">Luz Sensorial</div></footer>
+
+</body>
+</html>
